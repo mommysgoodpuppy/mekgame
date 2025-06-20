@@ -1,0 +1,3 @@
+# mekgame
+
+`deno run dev`
