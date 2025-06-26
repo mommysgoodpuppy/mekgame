@@ -117,12 +117,69 @@ function Ladder() {
   );
 }
 
-export function MechScene() {
+export function Face() {
   return (
     <>
-      <pointLight position={[0, 2.76, 2.1]} intensity={9.48} color="white" />
-      <group name={"floor"} scale={[3.22, 1, 3.56]}>
-        <mesh castShadow receiveShadow scale={[1.58, 0.21, 1.56]}>
+{/*       <group name={"head"} scale={0.5} position={[0, 3.25, 0]}>
+        <mesh castShadow receiveShadow scale={4}>
+          <boxGeometry />
+          <meshStandardMaterial color={"#7987b5"} opacity={0.5} transparent={true} />
+        </mesh>
+      </group> */}
+      <group name={"eyer"} scale={0.5} position={[0.5, 3.25, 1.18]}>
+        <mesh castShadow receiveShadow scale={1}>
+          <boxGeometry />
+          <meshStandardMaterial color={"#000000"} />
+        </mesh>
+      </group>
+      <group name={"eyel"} scale={0.5} position={[-0.5, 3.25, 1.18]}>
+        <mesh castShadow receiveShadow scale={1}>
+          <boxGeometry />
+          <meshStandardMaterial color={"#000000"} />
+        </mesh>
+      </group>
+    </>
+  )
+}
+
+export function Chassis() {
+  return (
+    <>
+      <Face/>
+      <group name={"head"} scale={0.5} position={[0, 3.25, 0]}>
+        <mesh castShadow receiveShadow scale={4}>
+          <boxGeometry />
+          <meshStandardMaterial color={"#7987b5"} opacity={0.5} transparent={true} />
+        </mesh>
+      </group>
+      <group name={"body"} scale={[1, 1, 1]}>
+        <mesh castShadow receiveShadow scale={4}>
+          <boxGeometry />
+          <meshStandardMaterial opacity={0.5} transparent={true} />
+        </mesh>
+      </group>
+      <group name={"platform"} scale={[1, 1, 1]} position={[0, -0.99, 0]}>
+        <mesh castShadow receiveShadow scale={[7, 0.3, 7]}>
+          <Geometry>
+            <Base>
+              <boxGeometry />
+            </Base>
+            <Subtraction>
+              <boxGeometry args={[0.6, 1, 0.6]} />
+            </Subtraction>
+          </Geometry>
+          <meshStandardMaterial color={"#5a3e25"} />
+        </mesh>
+      </group>
+    </>
+  )
+}
+
+export function Inside() {
+  return (
+    <>
+      <group name={"floor"} scale={[1, 1, 1]}>
+        <mesh castShadow receiveShadow scale={[3, 0.21, 3]}>
           <boxGeometry args={[1, 1, 1]} />
           <meshStandardMaterial />
         </mesh>
@@ -149,6 +206,16 @@ export function MechScene() {
       <group position={[0.37, 0, 0]} rotation={[0, -1.5707963267948966, 0]} scale={[0.77, 1.07, 0.77]}>
         <Ladder />
       </group>
+    </>
+  );
+}
+
+export function MechScene() {
+  return (
+    <>
+      <pointLight position={[0, 2.76, 2.1]} intensity={9.48} color="white" />
+      <Inside />
+      <Chassis />
     </>
   );
 }

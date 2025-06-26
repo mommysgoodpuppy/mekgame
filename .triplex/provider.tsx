@@ -1,9 +1,10 @@
+import { Physics } from "@react-three/rapier";
 
 
-export function GlobalProvider({
+export function CanvasProvider({
   children,
 }: {
   children?: React.ReactNode;
 }) {
-  return children;
+  return <Physics>{children}</Physics>;
 }

@@ -7,7 +7,7 @@
   },
   "lint": {
     "rules": {
-      "exclude": ["jsx-curly-braces", "no-explicit-any"]
+      "exclude": ["jsx-curly-braces", "no-explicit-any", "jsx-boolean-value"]
     }
   },
   "compilerOptions": {

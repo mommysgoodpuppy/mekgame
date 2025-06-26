@@ -2,7 +2,7 @@
 import * as THREE from "three"
 import { useRef, useMemo } from "react"
 import {createNoise2D} from "simplex-noise"
-import { useFrame, useLoader, extend } from "@react-three/fiber"
+import { useFrame, useLoader } from "@react-three/fiber"
 
 //These have been taken from "Realistic real-time grass rendering" by Eddie Lee, 2010
 import bladeDiffuse from "./resources/blade_diffuse.jpg"
