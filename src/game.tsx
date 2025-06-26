@@ -1,7 +1,7 @@
 import { PointerLockControls, Sky } from "@react-three/drei"
 import { Physics, RigidBody, CuboidCollider } from "@react-three/rapier"
 import { MechScene } from "./mechscene.tsx";
-import { DesktopCharacterController } from "./desktopcharactercontroller.tsx";
+import { DesktopCharacterController } from "./gamelogic/desktopcharactercontroller.tsx";
 
 function Ground() {
   return (
