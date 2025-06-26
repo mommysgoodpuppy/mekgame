@@ -1,9 +1,7 @@
 import { RoundedBox } from "@react-three/drei";
-import { Canvas } from '@react-three/fiber'
-import { XR, createXRStore } from '@react-three/xr'
 import { Geometry, Base, Subtraction } from '@react-three/csg'
 
-const store = createXRStore()
+
 
 function Closet() {
   return (
@@ -119,40 +117,38 @@ function Ladder() {
   );
 }
 
-export function Scene() {
+export function MechScene() {
   return (
     <>
-      <XR store={store}>
-        <pointLight position={[0, 2.76, 2.1]} intensity={9.48} color="white" />
-        <group name={"floor"} scale={[3.22, 1, 3.56]}>
-          <mesh castShadow receiveShadow scale={[0.52, 0.21, 0.48]}>
-            <boxGeometry args={[1, 1, 1]} />
-            <meshStandardMaterial />
-          </mesh>
-        </group>
-        <group name={"floor2"} scale={[3.22, 0.64, 3.56]} position={[0, 1.74, 0]}>
-          <mesh castShadow receiveShadow>
-            <Geometry>
-              <Base>
-                <boxGeometry args={[0.52, 0.21, 0.48]} />
-              </Base>
-              <Subtraction position={[0.13, 0, 0]} scale={[1.03, 1.1, 1.04]}>
-                <boxGeometry args={[0.2, 0.2, 0.2]} />
-              </Subtraction>
-            </Geometry>
-            <meshStandardMaterial />
-          </mesh>
-        </group>
-        <group position={[1.05, -0.04, -0.99]} scale={[0.75, 0.75, 0.75]}>
-          <Closet />
-        </group>
-        <group scale={[0.42, 0.42, 0.42]} position={[-0.02, 0, 0]} rotation={[0, -1.5707963267948966, 0]}>
-          <Chair />
-        </group>
-        <group position={[0.37, 0, 0]} rotation={[0, -1.5707963267948966, 0]} scale={[0.77, 1.07, 0.77]}>
-          <Ladder />
-        </group>
-      </XR>
+      <pointLight position={[0, 2.76, 2.1]} intensity={9.48} color="white" />
+      <group name={"floor"} scale={[3.22, 1, 3.56]}>
+        <mesh castShadow receiveShadow scale={[1.58, 0.21, 1.56]}>
+          <boxGeometry args={[1, 1, 1]} />
+          <meshStandardMaterial />
+        </mesh>
+      </group>
+      <group name={"floor2"} scale={[3.22, 0.64, 3.56]} position={[0, 1.74, 0]}>
+        <mesh castShadow receiveShadow>
+          <Geometry>
+            <Base>
+              <boxGeometry args={[0.52, 0.21, 0.48]} />
+            </Base>
+            <Subtraction position={[0.13, 0, 0]} scale={[1.03, 1.1, 1.04]}>
+              <boxGeometry args={[0.2, 0.2, 0.2]} />
+            </Subtraction>
+          </Geometry>
+          <meshStandardMaterial />
+        </mesh>
+      </group>
+      <group position={[1.05, -0.04, -0.99]} scale={[0.75, 0.75, 0.75]}>
+        <Closet />
+      </group>
+      <group scale={[0.42, 0.42, 0.42]} position={[-0.02, 0, 0]} rotation={[0, -1.5707963267948966, 0]}>
+        <Chair />
+      </group>
+      <group position={[0.37, 0, 0]} rotation={[0, -1.5707963267948966, 0]} scale={[0.77, 1.07, 0.77]}>
+        <Ladder />
+      </group>
     </>
   );
 }

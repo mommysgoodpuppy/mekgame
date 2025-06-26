@@ -2,9 +2,11 @@
   "version": "5",
   "specifiers": {
     "npm:@deno/vite-plugin@^1.0.4": "1.0.4_vite@6.3.5__@types+node@22.15.29__picomatch@4.0.2_@types+node@22.15.29_@types+node@22.12.0",
+    "npm:@dimforge/rapier3d-compat@~0.17.3": "0.17.3",
     "npm:@react-three/csg@4": "4.0.0_three@0.177.0_three-mesh-bvh@0.6.8__three@0.177.0",
     "npm:@react-three/drei@^10.0.8": "10.1.2_@react-three+fiber@9.1.2__react@19.1.0__react-dom@19.1.0___react@19.1.0__three@0.177.0__@types+react@19.1.6__use-sync-external-store@1.5.0___react@19.1.0_react@19.1.0_react-dom@19.1.0__react@19.1.0_three@0.177.0_@types+three@0.177.0_@types+react@19.1.6_use-sync-external-store@1.5.0__react@19.1.0",
     "npm:@react-three/fiber@^9.1.2": "9.1.2_react@19.1.0_react-dom@19.1.0__react@19.1.0_three@0.177.0_@types+react@19.1.6_use-sync-external-store@1.5.0__react@19.1.0",
+    "npm:@react-three/rapier@^2.1.0": "2.1.0_@react-three+fiber@9.1.2__react@19.1.0__react-dom@19.1.0___react@19.1.0__three@0.177.0__@types+react@19.1.6__use-sync-external-store@1.5.0___react@19.1.0_react@19.1.0_three@0.177.0_react-dom@19.1.0__react@19.1.0_@types+react@19.1.6",
     "npm:@react-three/xr@^6.6.17": "6.6.17_@react-three+fiber@9.1.2__react@19.1.0__react-dom@19.1.0___react@19.1.0__three@0.177.0__@types+react@19.1.6__use-sync-external-store@1.5.0___react@19.1.0_react@19.1.0_react-dom@19.1.0__react@19.1.0_three@0.177.0_@types+react@19.1.6",
     "npm:@types/node@*": "22.12.0",
     "npm:@types/node@^22.15.21": "22.15.29",
@@ -15,6 +17,8 @@
     "npm:koota@~0.4.1": "0.4.2_@types+react@19.1.6_react@19.1.0",
     "npm:react-dom@19": "19.1.0_react@19.1.0",
     "npm:react@19": "19.1.0",
+    "npm:simplex-noise@^4.0.3": "4.0.3",
+    "npm:three-stdlib@^2.36.0": "2.36.0_three@0.177.0",
     "npm:three@0.177": "0.177.0",
     "npm:vite@*": "6.3.5_@types+node@22.15.29_picomatch@4.0.2_@types+node@22.12.0",
     "npm:vite@^6.1.1": "6.3.5_@types+node@22.15.29_picomatch@4.0.2_@types+node@22.12.0"
@@ -181,6 +185,12 @@
     },
     "@dimforge/rapier3d-compat@0.12.0": {
       "integrity": "sha512-uekIGetywIgopfD97oDL5PfeezkFpNhwlzlaEYNOA0N6ghdsOvh/HYjSMek5Q2O1PYvRSDFcqFVJl4r4ZBwOow=="
+    },
+    "@dimforge/rapier3d-compat@0.15.0": {
+      "integrity": "sha512-TRH9rmF6RJqvKt0xis6VkToJHz4Pf54IfYhKGWn7zkpTWPwVyQ4p9kjwrdm6jOfGn72MBrIbttzvDB/ZOqE7sg=="
+    },
+    "@dimforge/rapier3d-compat@0.17.3": {
+      "integrity": "sha512-hxtaaqtfUWQvYbA/vstSEMZupObTMdM1u+5vTQlXNdWueRRhJ+toxREhaplok5W1/4ErxO6qdezbRM2eqEQsqw=="
     },
     "@emotion/is-prop-valid@1.2.2": {
       "integrity": "sha512-uNsoYd37AFmaCdXlg6EYD1KaPOaRWRByMCYzbKUX4+hhMfrxdVSelShywL4JVaAeM/eHUOSprYBQls+/neX3pw==",
@@ -484,6 +494,17 @@
         "react-dom@19.1.0_react@19.1.0"
       ]
     },
+    "@react-three/rapier@2.1.0_@react-three+fiber@9.1.2__react@19.1.0__react-dom@19.1.0___react@19.1.0__three@0.177.0__@types+react@19.1.6__use-sync-external-store@1.5.0___react@19.1.0_react@19.1.0_three@0.177.0_react-dom@19.1.0__react@19.1.0_@types+react@19.1.6": {
+      "integrity": "sha512-o1VzgCEILnc4noF4t5WNPYCy6dh0bTcd0Fa/xZa5/LBDnjYMb2mlWX6f+wMck5ucdz2BsVV+tpYWTGvb72QRIA==",
+      "dependencies": [
+        "@dimforge/rapier3d-compat@0.15.0",
+        "@react-three/fiber",
+        "react@19.1.0",
+        "suspend-react",
+        "three@0.177.0",
+        "three-stdlib"
+      ]
+    },
     "@react-three/xr@6.6.17_@react-three+fiber@9.1.2__react@19.1.0__react-dom@19.1.0___react@19.1.0__three@0.177.0__@types+react@19.1.6__use-sync-external-store@1.5.0___react@19.1.0_react@19.1.0_react-dom@19.1.0__react@19.1.0_three@0.177.0_@types+react@19.1.6": {
       "integrity": "sha512-W2u7STf6CsL7sIcpkezAYODBoLDJJ3ulLP8GiEIRWHmDNAyfE7gzJKG+A0nSJ0BvqO5t90kEvd+GgUnWBtETsw==",
       "dependencies": [
@@ -681,7 +702,7 @@
     "@types/three@0.177.0": {
       "integrity": "sha512-/ZAkn4OLUijKQySNci47lFO+4JLE1TihEjsGWPUT+4jWqxtwOPPEwJV1C3k5MEx0mcBPCdkFjzRzDOnHEI1R+A==",
       "dependencies": [
-        "@dimforge/rapier3d-compat",
+        "@dimforge/rapier3d-compat@0.12.0",
         "@tweenjs/tween.js",
         "@types/stats.js",
         "@types/webxr",
@@ -1150,6 +1171,9 @@
     "shebang-regex@3.0.0": {
       "integrity": "sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A=="
     },
+    "simplex-noise@4.0.3": {
+      "integrity": "sha512-qSE2I4AngLQG7BXqoZj51jokT4WUXe8mOBrvfOXpci8+6Yu44+/dD5zqDpOx3Ux792eamTd2lLcI8jqFntk/lg=="
+    },
     "source-map-js@1.2.1": {
       "integrity": "sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA=="
     },
@@ -1407,9 +1431,11 @@
   "workspace": {
     "dependencies": [
       "npm:@deno/vite-plugin@^1.0.4",
+      "npm:@dimforge/rapier3d-compat@~0.17.3",
       "npm:@react-three/csg@4",
       "npm:@react-three/drei@^10.0.8",
       "npm:@react-three/fiber@^9.1.2",
+      "npm:@react-three/rapier@^2.1.0",
       "npm:@react-three/xr@^6.6.17",
       "npm:@types/node@^22.15.21",
       "npm:@types/react-dom@^19.0.4",
@@ -1419,6 +1445,8 @@
       "npm:koota@~0.4.1",
       "npm:react-dom@19",
       "npm:react@19",
+      "npm:simplex-noise@^4.0.3",
+      "npm:three-stdlib@^2.36.0",
       "npm:three@0.177",
       "npm:vite@^6.1.1"
     ]
