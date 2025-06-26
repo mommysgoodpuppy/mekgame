@@ -71,25 +71,35 @@ export const GrassMaterial = shaderMaterial(
       }
       
       void main() {
-        //Relative position of vertex along the mesh Y direction
-        frc = position.y/float(bladeHeight);
-        //Get wind data from simplex noise 
-        float noise = 1.0-(snoise(vec2((time-offset.x/50.0), (time-offset.z/50.0)))); 
-        //Define the direction of an unbent blade of grass rotated around the Y axis
+        // The y-position of the vertex along the blade (from 0.0 to 1.0)
+        frc = position.y;
+
+        // Get wind data from simplex noise
+        float noise = 1.0 - snoise(vec2(time - offset.x / 50.0, time - offset.z / 50.0));
+
+        // Define the direction of an unbent blade of grass rotated around the Y axis
         vec4 direction = vec4(0.0, halfRootAngleSin, 0.0, halfRootAngleCos);
-        //Interpolate between the unbent direction and the direction of growth calculated on the CPU. 
-        //Using the relative location of the vertex along the Y axis as the weight, we get a smooth bend
+
+        // Interpolate between the unbent direction and the direction of growth calculated on the CPU.
+        // Using the relative location of the vertex along the Y axis as the weight, we get a smooth bend
         direction = slerp(direction, orientation, frc);
-        vec3 vPosition = vec3(position.x, position.y + position.y * stretch, position.z);
+
+        // Scale the blade of grass by the bladeHeight and stretch values
+        vec3 vPosition = position;
+        vPosition.y *= bladeHeight * (1.0 + stretch);
+
+        // Rotate the blade of grass
         vPosition = rotateVectorByQuaternion(vPosition, direction);
-      
-       //Apply wind
-       float halfAngle = noise * 0.15;
+
+        // Apply wind
+        float halfAngle = noise * 0.05;
         vPosition = rotateVectorByQuaternion(vPosition, normalize(vec4(sin(halfAngle), 0.0, -sin(halfAngle), cos(halfAngle))));
-        //UV for texture
+
+        // Set the UV coordinates
         vUv = uv;
-        //Calculate final position of the vertex from the world offset and the above shenanigans 
-        gl_Position = projectionMatrix * modelViewMatrix * vec4(offset + vPosition, 1.0 );
+
+        // Calculate the final position of the vertex
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(offset + vPosition, 1.0);
       }`,
   `
       precision mediump float;

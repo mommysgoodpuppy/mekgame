@@ -12,12 +12,12 @@ import "./grassmaterial.ts"
 
 const simplex = createNoise2D(Math.random)
 
-export default function Grass({ options = { bW: 0.12, bH: 1, joints: 5 }, size = [100, 100], instances = 50000, showGround = true, ...props }: { options?: any, size?: [number, number], instances?: number, showGround?: boolean, [x:string]: any }) {
-  const { bW, bH, joints } = options
+export default function Grass({ bladeHeight = 1, options = { bW: 0.12, joints: 5 }, size = [100, 100], instances = 50000, showGround = true, ...props }: { bladeHeight?: number, options?: any, size?: [number, number], instances?: number, showGround?: boolean, [x:string]: any }) {
+  const { bW, joints } = options
   const materialRef = useRef<any>(null)
   const [texture, alphaMap] = useLoader(THREE.TextureLoader, [bladeDiffuse, bladeAlpha])
   const attributeData = useMemo(() => getAttributeData(instances, size), [instances, size])
-  const baseGeom = useMemo(() => new THREE.PlaneGeometry(bW, bH, 1, joints).translate(0, bH / 2, 0), [options])
+  const baseGeom = useMemo(() => new THREE.PlaneGeometry(bW, 1, 1, joints).translate(0, 0.5, 0), [options])
   const groundGeo = useMemo(() => {
     const geo = new THREE.PlaneGeometry(size[0], size[1], 32, 32)
     geo.rotateX(-Math.PI / 2)
@@ -44,11 +44,11 @@ export default function Grass({ options = { bW: 0.12, bH: 1, joints: 5 }, size =
           <instancedBufferAttribute attach="attributes-halfRootAngleSin" args={[new Float32Array(attributeData.halfRootAngleSin), 1]} />
           <instancedBufferAttribute attach="attributes-halfRootAngleCos" args={[new Float32Array(attributeData.halfRootAngleCos), 1]} />
         </instancedBufferGeometry>
-          <grassMaterial ref={materialRef} map={texture} alphaMap={alphaMap} toneMapped={false} />
+          <grassMaterial ref={materialRef} bladeHeight={bladeHeight} map={texture} alphaMap={alphaMap} toneMapped={false} />
       </mesh>
       {showGround && (
         <mesh position={[0, 0, 0]} geometry={groundGeo}>
-          <meshStandardMaterial color="#012901" />
+          <meshStandardMaterial color="#173b17" />
         </mesh>
       )}
     </group >
@@ -118,11 +118,7 @@ function getAttributeData(instances: number, size: [number, number]) {
     orientations.push(quaternion_0.x, quaternion_0.y, quaternion_0.z, quaternion_0.w)
 
     //Define variety in height
-    if (i < instances / 3) {
-      stretches.push(Math.random() * 1.8)
-    } else {
-      stretches.push(Math.random())
-    }
+    stretches.push(Math.random() * 0.3);
   }
 
   return {

@@ -120,7 +120,7 @@ function Ladder() {
 export function Face() {
   return (
     <>
-{/*       <group name={"head"} scale={0.5} position={[0, 3.25, 0]}>
+      {/*       <group name={"head"} scale={0.5} position={[0, 3.25, 0]}>
         <mesh castShadow receiveShadow scale={4}>
           <boxGeometry />
           <meshStandardMaterial color={"#7987b5"} opacity={0.5} transparent={true} />
@@ -145,7 +145,7 @@ export function Face() {
 export function Chassis() {
   return (
     <>
-      <Face/>
+      <Face />
       <group name={"head"} scale={0.5} position={[0, 3.25, 0]}>
         <mesh castShadow receiveShadow scale={4}>
           <boxGeometry />
@@ -213,7 +213,7 @@ export function Inside() {
 export function MechScene() {
   return (
     <>
-      <pointLight position={[0, 2.76, 2.1]} intensity={9.48} color="white" />
+      <pointLight position={[0, 5.38, 2.1]} intensity={9.48} color="white" />
       <Inside />
       <Chassis />
     </>
