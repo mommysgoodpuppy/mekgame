@@ -12,14 +12,14 @@ import "./grassmaterial.ts"
 
 const simplex = createNoise2D(Math.random)
 
-export default function Grass({ options = { bW: 0.12, bH: 1, joints: 5 }, width = 100, instances = 50000, ...props }) {
+export default function Grass({ options = { bW: 0.12, bH: 1, joints: 5 }, size = [100, 100], instances = 50000, showGround = true, ...props }: { options?: any, size?: [number, number], instances?: number, showGround?: boolean, [x:string]: any }) {
   const { bW, bH, joints } = options
   const materialRef = useRef<any>(null)
   const [texture, alphaMap] = useLoader(THREE.TextureLoader, [bladeDiffuse, bladeAlpha])
-  const attributeData = useMemo(() => getAttributeData(instances, width), [instances, width])
+  const attributeData = useMemo(() => getAttributeData(instances, size), [instances, size])
   const baseGeom = useMemo(() => new THREE.PlaneGeometry(bW, bH, 1, joints).translate(0, bH / 2, 0), [options])
   const groundGeo = useMemo(() => {
-    const geo = new THREE.PlaneGeometry(width, width, 32, 32)
+    const geo = new THREE.PlaneGeometry(size[0], size[1], 32, 32)
     geo.rotateX(-Math.PI / 2)
     const positions = geo.attributes.position
     for (let i = 0; i < positions.count; i++) {
@@ -29,7 +29,7 @@ export default function Grass({ options = { bW: 0.12, bH: 1, joints: 5 }, width 
     }
     geo.computeVertexNormals()
     return geo
-  }, [width])
+  }, [size])
   useFrame((state) => (materialRef.current.uniforms.time.value = state.clock.elapsedTime / 4))
 
 
@@ -46,15 +46,17 @@ export default function Grass({ options = { bW: 0.12, bH: 1, joints: 5 }, width 
         </instancedBufferGeometry>
           <grassMaterial ref={materialRef} map={texture} alphaMap={alphaMap} toneMapped={false} />
       </mesh>
-      < mesh position={[0, 0, 0]} geometry={groundGeo} >
-        <meshStandardMaterial color="#000f00" />
-      </mesh>
+      {showGround && (
+        <mesh position={[0, 0, 0]} geometry={groundGeo}>
+          <meshStandardMaterial color="#012901" />
+        </mesh>
+      )}
     </group >
     </>
   )
 }
 
-function getAttributeData(instances: number, width: number) {
+function getAttributeData(instances: number, size: [number, number]) {
   const offsets = []
   const orientations = []
   const stretches = []
@@ -71,8 +73,8 @@ function getAttributeData(instances: number, width: number) {
   //For each instance of the grass blade
   for (let i = 0; i < instances; i++) {
     //Offset of the roots
-    const offsetX = Math.random() * width - width / 2
-    const offsetZ = Math.random() * width - width / 2
+    const offsetX = Math.random() * size[0] - size[0] / 2
+    const offsetZ = Math.random() * size[1] - size[1] / 2
     const offsetY = getYPosition(offsetX, offsetZ)
     offsets.push(offsetX, offsetY, offsetZ)
 
@@ -141,8 +143,9 @@ function multiplyQuaternions(q1: THREE.Vector4, q2: THREE.Vector4) {
 }
 
 function getYPosition(x: number, z: number) {
-  let y = 2 * simplex(x / 50, z / 50)
-  y += 4 * simplex(x / 100, z / 100)
-  y += 0.2 * simplex(x / 10, z / 10)
-  return y
+  // let y = 2 * simplex(x / 50, z / 50)
+  // y += 4 * simplex(x / 100, z / 100)
+  // y += 0.2 * simplex(x / 10, z / 10)
+  // return y
+  return 0
 }

@@ -10,6 +10,9 @@
       "exclude": ["jsx-curly-braces", "no-explicit-any", "jsx-boolean-value"]
     }
   },
+  "fmt":{
+    "indentWidth": 2
+  },
   "compilerOptions": {
     "lib": [
       "ES2020",
